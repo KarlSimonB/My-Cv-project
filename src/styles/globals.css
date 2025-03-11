@@ -6,24 +6,80 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* Light theme (default) variables */
+  --primary-blue: #007BFF;
+  --secondary-gray: #f5f7fa;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --text-color: #333;
+  --background-color: #ffffff;
+  --header-bg: #f0f4f8;
+  --card-bg: #f8f8f8;
+  --border-color: #e0e0e0;
+  --heading-color: #333;
+}
+
+.dark-mode {
+  /* Dark theme variables - complete set */
+  --primary-blue: #4da3ff;
+  --secondary-gray: #222;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --text-color: white;
+  --background-color: #121212;
+  --header-bg: #1e1e1e;
+  --card-bg: #2d2d2d;
+  --border-color: #444;
+  --heading-color: white;
+}
+
+.light-mode {
+  /* Explicit light mode variables for clarity */
+  --primary-blue: #007BFF;
+  --secondary-gray: #f5f7fa;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --text-color: #333;
+  --background-color: #ffffff;
+  --header-bg: #f0f4f8;
+  --card-bg: #f8f8f8;
+  --border-color: #e0e0e0;
+  --heading-color: #333;
+}
+
+/* Updated dark mode indicator - more subtle and in left corner */
+.dark-mode::after {
+  content: "DARK";
+  position: fixed;
+  top: 20px;
+  left: 10px;
+  background: rgba(75, 75, 75, 0.7);
+  color: #aaa;
+  padding: 3px 5px;
+  font-size: 10px;
+  border-radius: 3px;
+  z-index: 9999;
+}
+
 body {
   font-family: 'Arial', sans-serif;
   background-color: var(--secondary-gray);
-  color: #333;
+  color: var(--text-color);
   line-height: 1.6;
   padding: 20px;
+  transition: all 0.3s ease; /* Smooth transition between themes */
 }
 
 h1,
 h2,
 h3 {
   font-family: 'Roboto', sans-serif;
-  color: #333;
+  color: var(--heading-color);
+  transition: color 0.3s ease;
 }
 
 a {
   text-decoration: none;
   color: var(--primary-blue);
+  transition: color 0.3s ease;
 }
 
 ul {
@@ -38,16 +94,11 @@ button {
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
   background-color: #0056b3;
-}
-
-:root {
-  --primary-blue: #007BFF; 
-  --secondary-gray: #f5f7fa; 
-  --shadow-color: rgba(0, 0, 0, 0.1); 
 }
 
 /* Header and text styles */
@@ -64,6 +115,22 @@ h2 {
 h3 {
   font-size: 1.2rem;
   margin-bottom: 0.3rem;
+}
+
+/* Additional theme styles */
+.header {
+  background-color: var(--header-bg);
+  border-bottom-color: var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav__links a {
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.nav__links a:hover {
+  color: var(--primary-blue);
 }
 
 /* Responsive styling */
@@ -83,4 +150,202 @@ h3 {
   h3 {
     font-size: 1rem;
   }
+}
+
+/* Direct overrides for components that might not use variables yet */
+.dark-mode .header {
+  background-color: #1e1e1e !important;
+}
+
+.dark-mode h1, 
+.dark-mode h2, 
+.dark-mode h3 {
+  color: white !important;
+}
+
+.dark-mode .nav__links a {
+  color: white !important;
+}
+
+.dark-mode body,
+.dark-mode .App {
+  background-color: #222 !important;
+}
+
+/* Enhanced dark mode styling for various components */
+/* Card elements */
+.dark-mode .card,
+.dark-mode .project-card,
+.dark-mode .skill-card,
+.dark-mode .education-card,
+.dark-mode .experience-card {
+  background-color: #2d2d2d !important;
+  border-color: #444 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Form elements */
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+  background-color: #333 !important;
+  color: white !important;
+  border-color: #555 !important;
+}
+
+/* Additional text elements */
+.dark-mode p,
+.dark-mode span,
+.dark-mode li {
+  color: #e0e0e0 !important;
+}
+
+/* Links */
+.dark-mode a {
+  color: #4da3ff !important;
+}
+
+.dark-mode a:hover {
+  color: #80bdff !important;
+}
+
+/* Footer */
+.dark-mode footer,
+.dark-mode .footer {
+  background-color: #1e1e1e !important;
+  color: #e0e0e0 !important;
+  border-top-color: #444 !important;
+}
+
+/* Buttons except theme toggle */
+.dark-mode button:not(.theme-toggle-button) {
+  background-color: #4da3ff !important;
+  color: white !important;
+}
+
+.dark-mode button:hover:not(.theme-toggle-button) {
+  background-color: #2b7cd5 !important;
+}
+
+/* Section backgrounds */
+.dark-mode section,
+.dark-mode .section,
+.dark-mode .page-section {
+  background-color: #222 !important;
+}
+
+/* Contact form specific */
+.dark-mode .contact-form {
+  background-color: #2d2d2d !important;
+}
+
+/* Timeline or experience items */
+.dark-mode .timeline-item,
+.dark-mode .experience-item {
+  border-color: #444 !important;
+}
+
+.dark-mode .timeline-item::before,
+.dark-mode .experience-item::before {
+  background-color: #4da3ff !important;
+}
+
+/* Project items */
+.dark-mode .project-technologies span {
+  background-color: #333 !important;
+  color: white !important;
+}
+
+/* Custom scrollbar for dark mode */
+.dark-mode::-webkit-scrollbar {
+  width: 10px;
+}
+
+.dark-mode::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.dark-mode::-webkit-scrollbar-thumb {
+  background: #444;
+}
+
+.dark-mode::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Make sure the body directly gets the dark background */
+.dark-mode body {
+  background-color: #2a2a2a !important;
+}
+
+/* Also target the root element for complete coverage */
+.dark-mode, 
+body.dark-mode {
+  background-color: #2a2a2a !important;
+}
+
+/* Match footer background to body in dark mode */
+.dark-mode footer,
+.dark-mode .footer {
+  background-color: #2a2a2a !important;
+  color: #e0e0e0 !important;
+  border-top-color: #444 !important;
+}
+
+/* Add this to your CSS */
+@media (max-width: 600px) {
+  .theme-toggle-li {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+  }
+  
+  .theme-toggle-li button {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Add these rules to your globals.css file */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* If the gap persists, we can try to be more aggressive */
+body {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Make sure the App container also doesn't have unwanted margins */
+.App {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Add this to your globals.css or index.css */
+
+/* Apply background color to html element as well */
+html {
+  background-color: var(--secondary-gray);
+  transition: background-color 0.3s ease;
+}
+
+/* Make sure body has the correct background */
+body {
+  background-color: var(--secondary-gray);
+  transition: background-color 0.3s ease;
+}
+
+/* Explicit dark mode overrides for html and body */
+.dark-mode html,
+html.dark-mode,
+.dark-mode body,
+body.dark-mode {
+  background-color: #2a2a2a !important;
 }

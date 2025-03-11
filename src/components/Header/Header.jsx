@@ -2,6 +2,7 @@ import React from 'react';
 import './Header.css';
 import myImage from './jag.jpg'; // Profile Picture
 import { Link } from 'react-router-dom';
+import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
   return (
@@ -23,6 +24,7 @@ const Header = () => {
           <li><Link to="/projects">Projects</Link></li>
           <li><Link to="/contact">Contact</Link></li>
           <li><Link to="/info">Info</Link></li>
+          <li className="theme-toggle-li"><ThemeToggle /></li>
         </ul>
       </nav>
     </header>
